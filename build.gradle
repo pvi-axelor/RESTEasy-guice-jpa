@@ -1,0 +1,31 @@
+plugins {
+    id 'java'
+    id 'eclipse'
+    id 'eclipse-wtp'
+    id 'war'
+}
+
+repositories {
+     mavenCentral()
+     mavenLocal()
+}
+
+dependencies {
+        
+    implementation 'org.hibernate:hibernate-validator:6.0.11.Final'
+    implementation 'org.hibernate:hibernate-core:5.5.6.Final'
+    implementation 'org.postgresql:postgresql:42.2.2'
+    
+    implementation 'com.google.inject:guice:4.2.0'
+    implementation 'com.google.inject.extensions:guice-servlet:4.2.0'
+    implementation 'com.google.inject.extensions:guice-persist:4.2.0'
+    
+	implementation 'org.jboss.resteasy:resteasy-jaxrs:3.6.0.Final'
+    implementation 'org.jboss.resteasy:resteasy-guice:3.6.0.Final'    
+    implementation 'org.jboss.resteasy:resteasy-jaxb-provider:3.6.0.Final'
+    implementation 'org.jboss.resteasy:resteasy-html:3.6.0.Final'
+
+    implementation 'javax.servlet:javax.servlet-api:3.1.0'
+    implementation group: 'javax.servlet', name: 'jstl', version: '1.2'  
+
+}
