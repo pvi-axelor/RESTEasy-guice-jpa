@@ -28,7 +28,7 @@ public class StudentResource {
 
 	@Inject
 	StudentService studentService;
-	
+
 	@Path("/list")
 	@GET
 	@Produces(MediaType.TEXT_HTML)
@@ -45,35 +45,37 @@ public class StudentResource {
 	@Produces(MediaType.TEXT_HTML)
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	public Response createStudent(@FormParam("name") String name, @FormParam("age") int age,
-			@FormParam("grade") String grade, @FormParam("email") String email, @FormParam("course1") String course1, @FormParam("course2") String course2) {
-		
+			@FormParam("grade") String grade, @FormParam("email") String email, @FormParam("course1") String course1,
+			@FormParam("course2") String course2) {
+
 		Set<Course> courseList = new HashSet<Course>();
-		
+
 		courseList.add(new Course(course1));
 		courseList.add(new Course(course2));
-		
+
 		Student tempStudent = new Student(name, age, grade, email, courseList);
-		for (var i: courseList)
+		for (var i : courseList)
 			i.setStudent(tempStudent);
-		
+
 		this.studentService.addStudent(tempStudent);
 		return Response.status(200).build();
-		
+
 	}
 
 	@Path("/find{id}")
 	@GET
 	@Produces(MediaType.TEXT_HTML)
 	public Response findOneStudent(@PathParam("id") int id) {
-		
+
 		String studentFound = "Doesn't exist!";
 		try {
 			studentFound = this.studentService.findOne(id).toString();
-		} catch (Exception e) {}
-		
+		} catch (Exception e) {
+		}
+
 		return Response.status(200).entity(studentFound).build();
 	}
-	
+
 	@Path("/delete{id}")
 	@PUT
 	@Produces(MediaType.TEXT_PLAIN)
@@ -82,19 +84,27 @@ public class StudentResource {
 		this.studentService.deleteStudent(id);
 		return Response.status(200).build();
 	}
-	
-	/*
-	
+
 	@Path("/update")
 	@PUT
 	@Consumes(MediaType.TEXT_PLAIN)
 	public Response udpateStudent(String input) {
-		
+
 		String[] inputSplit = input.split(",");
-		Student student = new Student(Integer.parseInt(inputSplit[0]), inputSplit[1], Integer.parseInt(inputSplit[2]) ,inputSplit[3] ,inputSplit[4]);
-		studentService.updateStudent(student);
+
+		Set<Course> courseList = new HashSet<Course>();
+
+		courseList.add(new Course(inputSplit[5]));
+		courseList.add(new Course(inputSplit[6]));
+
+		Student tempStudent = new Student(Integer.parseInt(inputSplit[0]), inputSplit[1],
+				Integer.parseInt(inputSplit[2]), inputSplit[3], inputSplit[4], courseList);
+		
+		for (var i : courseList)
+			i.setStudent(tempStudent);
+
+		studentService.updateStudent(tempStudent);
 		return Response.status(200).build();
 	}
-	
-	*/
+
 }

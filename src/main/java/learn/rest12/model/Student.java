@@ -102,7 +102,14 @@ public class Student {
 
 	@Override
 	public String toString() {
-		return studentId + "," + name + "," + age + "," + grade + "," + email;
+				
+		String studentString = studentId + "," + name + "," + age + "," + grade + "," + email;
+		
+		for (var i : courses) {
+			studentString += i.toString().substring(i.toString().indexOf(","));
+		}
+		
+		return studentString;
 	}
 
 }

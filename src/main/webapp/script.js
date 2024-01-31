@@ -117,10 +117,13 @@ function updateAStudent() {
 	var foundStudentCourse2 = document.getElementById("find_course2");
 
 	updateStudent = foundStudentID.value + "," + foundStudentName.value + ","
-	+ foundStudentAge.value + "," + foundStudentGrade.value + "," + foundStudentEmail.value
+	+ foundStudentAge.value + "," + foundStudentGrade.value + "," + foundStudentEmail.value + ","
 	+ foundStudentCourse1.value + "," + foundStudentCourse2.value;
 	
 	console.log(updateStudent);
+	
+	console.log(updateStudent.split(","));
+	
 
 	var xhr = new XMLHttpRequest();
 	xhr.open("PUT", "./student/update", true);
@@ -137,6 +140,8 @@ function updateAStudent() {
 	foundStudentAge.value = "";
 	foundStudentGrade.value = "";
 	foundStudentEmail.value = "";
+	foundStudentCourse1.value = "";
+	foundStudentCourse2.value = "";
 
 }
 
@@ -156,5 +161,7 @@ function deleteAStudent() {
 	document.getElementById("find_grade").value = "";
 	document.getElementById("find_email").value = "";
 	document.getElementById("find_name").value = "Deleted!";
+	document.getElementById("find_course1").value = "";
+	document.getElementById("find_course2").value = "";
 	
 }
