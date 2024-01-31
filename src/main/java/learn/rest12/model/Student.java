@@ -1,21 +1,28 @@
 package learn.rest12.model;
 
+import java.util.List;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.print.attribute.standard.MediaSize.Other;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Student {
 	@Id
-	@GeneratedValue (strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int studentId;
-	
+
 	private String name;
 	private int age;
 	private String grade;
 	private String email;
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "student")
+	private Set<Course> courses;
 
 	public Student() {
 		super();
@@ -26,21 +33,23 @@ public class Student {
 		this.studentId = studentId;
 	}
 
-	public Student(String name, int age, String grade, String email) {
+	public Student(String name, int age, String grade, String email, Set<Course> courses) {
 		super();
 		this.name = name;
 		this.age = age;
 		this.grade = grade;
 		this.email = email;
+		this.courses = courses;
 	}
 
-	public Student(int studentId, String name, int age, String grade, String email) {
+	public Student(int studentId, String name, int age, String grade, String email, Set<Course> courses) {
 		super();
 		this.studentId = studentId;
 		this.name = name;
 		this.age = age;
 		this.grade = grade;
 		this.email = email;
+		this.courses = courses;
 	}
 
 	public int getStudentId() {
@@ -81,6 +90,14 @@ public class Student {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public Set<Course> getCourses() {
+		return courses;
+	}
+
+	public void setCourses(Set<Course> courses) {
+		this.courses = courses;
 	}
 
 	@Override

@@ -1,5 +1,9 @@
 package learn.rest12.resource;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.ws.rs.Consumes;
@@ -15,6 +19,7 @@ import javax.ws.rs.core.Response;
 
 import com.google.inject.Inject;
 
+import learn.rest12.model.Course;
 import learn.rest12.model.Student;
 import learn.rest12.service.StudentService;
 
@@ -40,9 +45,18 @@ public class StudentResource {
 	@Produces(MediaType.TEXT_HTML)
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	public Response createStudent(@FormParam("name") String name, @FormParam("age") int age,
-			@FormParam("grade") String grade, @FormParam("email") String email) {
+			@FormParam("grade") String grade, @FormParam("email") String email, @FormParam("course1") String course1, @FormParam("course2") String course2) {
 		
-		this.studentService.addStudent(new Student(name, age, grade, email));
+		Set<Course> courseList = new HashSet<Course>();
+		
+		courseList.add(new Course(course1));
+		courseList.add(new Course(course2));
+		
+		Student tempStudent = new Student(name, age, grade, email, courseList);
+		for (var i: courseList)
+			i.setStudent(tempStudent);
+		
+		this.studentService.addStudent(tempStudent);
 		return Response.status(200).build();
 		
 	}
@@ -69,6 +83,8 @@ public class StudentResource {
 		return Response.status(200).build();
 	}
 	
+	/*
+	
 	@Path("/update")
 	@PUT
 	@Consumes(MediaType.TEXT_PLAIN)
@@ -79,4 +95,6 @@ public class StudentResource {
 		studentService.updateStudent(student);
 		return Response.status(200).build();
 	}
+	
+	*/
 }

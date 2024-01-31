@@ -1,8 +1,3 @@
-function hitit() {
-	var findId = document.getElementById("findStudentID");
-	window.location.href = "./student/find" + findId.value;
-}
-
 function findAStudent() {
 
 	var findID = document.getElementById("findStudentID").value;
@@ -38,12 +33,16 @@ function findAStudent() {
 			var foundStudentAge = document.getElementById("find_age");
 			var foundStudentGrade = document.getElementById("find_grade");
 			var foundStudentEmail = document.getElementById("find_email");
+			var foundStudentCourse1 = document.getElementById("find_course1");
+			var foundStudentCourse2 = document.getElementById("find_course2");
 
 			foundStudentID.value = listStringParts[0];
 			foundStudentName.value = listStringParts[1];
 			foundStudentAge.value = listStringParts[2];
 			foundStudentGrade.value = listStringParts[3];
 			foundStudentEmail.value = listStringParts[4];
+			foundStudentCourse1.value = listStringParts[5]; 
+			foundStudentCourse2.value = listStringParts[6];
 
 		}
 	};
@@ -114,8 +113,13 @@ function updateAStudent() {
 	var foundStudentAge = document.getElementById("find_age");
 	var foundStudentGrade = document.getElementById("find_grade");
 	var foundStudentEmail = document.getElementById("find_email");
+	var foundStudentCourse1 = document.getElementById("find_course1");
+	var foundStudentCourse2 = document.getElementById("find_course2");
 
-	updateStudent = foundStudentID.value + "," + foundStudentName.value + "," + foundStudentAge.value + "," + foundStudentGrade.value + "," + foundStudentEmail.value;
+	updateStudent = foundStudentID.value + "," + foundStudentName.value + ","
+	+ foundStudentAge.value + "," + foundStudentGrade.value + "," + foundStudentEmail.value
+	+ foundStudentCourse1.value + "," + foundStudentCourse2.value;
+	
 	console.log(updateStudent);
 
 	var xhr = new XMLHttpRequest();

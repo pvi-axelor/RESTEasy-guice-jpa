@@ -13,12 +13,24 @@
 
 	<form id="studentForm" method="post"
 		onsubmit="insertAStudent(); return false;">
-		<label for="name">Name:</label> <input type="text" id="name"
-			name="name" required> <label for="age">Age:</label> <input
-			type="number" id="age" name="age" required> <label
-			for="grade">Grade:</label> <input type="text" id="grade" name="grade"
-			required> <label for="email">Email:</label> <input
-			type="email" id="email" name="email" required>
+		
+		<label for="name">Name:</label>
+		<input type="text" id="name"name="name" required> 
+		
+		<label for="age">Age:</label>
+		<input type="number" id="age" name="age" required>
+		
+		<label for="grade">Grade:</label>
+		<input type="text" id="grade" name="grade" required>
+		
+		<label for="email">Email:</label>
+		<input type="email" id="email" name="email" required>
+		
+		<label for="course1">Course 1:</label>
+		<input type="text" id="course1" name="course1" required>
+		
+		<label for="course2">Course 2:</label>
+		<input type="text" id="course2" name="course2" required>
 
 		<button type="submit">Submit</button>
 	</form>
@@ -36,6 +48,8 @@
 					<th>Age</th>
 					<th>Grade</th>
 					<th>Email</th>
+					<th>Course 1</th>
+					<th>Course 2</th>
 				</tr>
 			</thead>
 			<tbody id="studentListItemsFind">
@@ -48,6 +62,10 @@
 					<td><input type="text" name="find_grade" id="find_grade"
 						required></td>
 					<td><input type="email" name="find_email" id="find_email"
+						required></td>
+					<td><input type="text" name="find_course1" id="find_course1"
+						required></td>
+					<td><input type="text" name="find_course2" id="find_course2"
 						required></td>
 				</tr>
 			</tbody>
@@ -70,6 +88,8 @@
 					<th>Age</th>
 					<th>Grade</th>
 					<th>Email</th>
+					<th>Course 1</th>
+					<th>Course 2</th>
 					<!--  <th>Action</th> -->
 				</tr>
 			</thead>
